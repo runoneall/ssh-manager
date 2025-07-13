@@ -1,0 +1,229 @@
+{
+    "root": {
+        "data": {
+            "id": "dbav26a5zmo0",
+            "created": 1752403117167,
+            "text": "ssh-manager"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "dbav2mgfa740",
+                    "created": 1752403152375,
+                    "text": "1. ssh服务器",
+                    "priority": null,
+                    "layout": null
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "dbav36bkszc0",
+                    "created": 1752403195617,
+                    "text": "2. 多用户管理",
+                    "priority": null,
+                    "layout": null
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "dbav478us9c0",
+                            "created": 1752403275993,
+                            "text": "用户名",
+                            "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "dbav4dbyaug0",
+                            "created": 1752403289242,
+                            "text": "密码",
+                            "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "dbav4m8nlgg0",
+                            "created": 1752403308633,
+                            "text": "是否是管理员",
+                            "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "dbav4y0k6280",
+                            "created": 1752403334265,
+                            "text": "可访问的ssh服务器",
+                            "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "dbav54qfqmg0",
+                            "created": 1752403348890,
+                            "text": "是否禁用",
+                            "layout": null
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "dbav3e5jbz40",
+                    "created": 1752403212666,
+                    "text": "3. 连接配置",
+                    "priority": null,
+                    "layout": null
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "dbavlwdad5k0",
+                            "created": 1752404662871,
+                            "text": "uuid",
+                            "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "dbav6ki5aj40",
+                            "created": 1752403461581,
+                            "text": "名称",
+                            "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "dbav6qqixsw0",
+                            "created": 1752403475149,
+                            "text": "地址",
+                            "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "dbav8ddirmo0",
+                            "created": 1752403602793,
+                            "text": "端口",
+                            "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "dbav8flwto00",
+                            "created": 1752403607653,
+                            "text": "登录用户名",
+                            "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "dbav8lpit5c0",
+                            "created": 1752403620932,
+                            "text": "登录方式",
+                            "layout": null
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "dbav9atfz8o0",
+                                    "created": 1752403675589,
+                                    "text": "密码",
+                                    "layout": null
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "dbav9fptc5k0",
+                                    "created": 1752403686254,
+                                    "text": "密钥",
+                                    "layout": null
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "dbav3sumiko0",
+                    "created": 1752403244658,
+                    "text": "4. 连接管理",
+                    "layout": null
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "dbav9pe5q1s0",
+                            "created": 1752403707317,
+                            "text": "1. 新建连接",
+                            "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "dbavabgi7hc0",
+                            "created": 1752403755348,
+                            "text": "2. 编辑连接",
+                            "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "dbavbcpaedc0",
+                            "created": 1752403836420,
+                            "text": "3. 运行中的连接",
+                            "layout": null
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "dbavc06gw7s0",
+                                    "created": 1752403887525,
+                                    "text": "用户退出时关闭",
+                                    "layout": null
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "dbavc6xx0jk0",
+                                    "created": 1752403902245,
+                                    "text": "无访问权限时关闭",
+                                    "layout": null
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "dbavcsyje140",
+                                    "created": 1752403950172,
+                                    "text": "用户禁用时关闭",
+                                    "layout": null
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "right",
+    "theme": "fresh-blue",
+    "version": "1.4.43"
+}
