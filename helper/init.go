@@ -1,17 +1,18 @@
-package initHelper
+package helper
 
 import (
 	"errors"
+	"fmt"
 	"os"
 )
 
 var FolderAlreadyExistErr error = errors.New("Folder already exists")
 
 func CreateFolder(path string) error {
-	_, err := os.Stat(path)
 
 	// 不存在则新建
-	if os.IsNotExist(err) {
+	if !IsExist(path) {
+		fmt.Println("创建目录:", path)
 		return os.MkdirAll(path, 0755)
 	}
 
