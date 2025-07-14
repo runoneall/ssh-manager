@@ -7,18 +7,17 @@ import (
 	"golang.org/x/term"
 )
 
-func StartShell(session ssh.Session, logger func(msg string)) {
-
-	// 获取PTY
-	_, _, isPty := session.Pty()
-	if !isPty {
-		logger("无法获取PTY")
-		session.Exit(1)
-		return
-	}
+func StartShell(session ssh.Session) {
 
 	// 创建终端
 	terminal := term.NewTerminal(session, fmt.Sprintf("%s> ", session.User()))
+
+	// 创建logger
+	logger := func(msg string) {
+		terminal.Write([]byte(msg + "\n"))
+	}
+
+	// 主循环
 	for {
 		line, err := terminal.ReadLine()
 

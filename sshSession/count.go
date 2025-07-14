@@ -11,7 +11,6 @@ func getClientIP(s ssh.Session) string {
 	addr := s.RemoteAddr().String()
 	host, _, err := net.SplitHostPort(addr)
 	if err != nil {
-		// 处理无端口的情况（如单元测试中的 mock 对象）
 		return addr
 	}
 	return host

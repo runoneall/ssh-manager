@@ -22,21 +22,21 @@ func OnConnect(session ssh.Session) {
 		allSessions.RemoveSession(currentUser, session)
 	}()
 
-	// 封装ssh连接logger
-	sshLogger := func(msg string) {
+	// ssh输出函数
+	logger := func(msg string) {
 		session.Write([]byte(msg + "\n"))
 	}
 
 	// 显示欢迎消息
-	sshLogger(fmt.Sprintf(
+	logger(fmt.Sprintf(
 		"SSH Manager: 已作为 %s 用户登录", currentUser,
 	))
-	sshLogger(fmt.Sprintf(
+	logger(fmt.Sprintf(
 		"SSH Manager: 已有 %d 个会话在 %d 个IP上",
 		allSessions.CountSession(currentUser),
 		allSessions.CountIP(currentUser),
 	))
 
 	// 进入主循环
-	sshShell.StartShell(session, sshLogger)
+	sshShell.StartShell(session)
 }

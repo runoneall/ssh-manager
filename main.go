@@ -31,6 +31,8 @@ func main() {
 		}
 		fmt.Println("默认超级用户: admin, 密码: admin (该信息只会显示一次!)")
 	}
+	fmt.Println("加载用户信息...")
+	sshUser.GetSSHUsers().LoadFromJson(userConfigPath)
 
 	// 启动SSH服务器
 	sshServer.Start(
