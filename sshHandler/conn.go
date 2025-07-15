@@ -2,6 +2,7 @@ package sshHandler
 
 import (
 	"fmt"
+	"ssh-manager/helper"
 	"ssh-manager/sshSession"
 	"ssh-manager/sshShell"
 
@@ -16,6 +17,10 @@ func OnConnect(session ssh.Session) {
 
 func handleConnection(s ssh.Session) {
 	u := s.User()
+	ip := helper.GetClientIP(s.RemoteAddr())
+
+	// 连接提示
+	fmt.Printf("* 用户 %s(%s) 已连接\n", u, ip)
 
 	// 欢迎消息
 	fmt.Fprintln(s, "* Welcome to SSH Manager!")
@@ -26,5 +31,8 @@ func handleConnection(s ssh.Session) {
 
 	// 进入shell
 	sshShell.StartShell(s)
+
+	// 退出提示
+	fmt.Printf("* 用户 %s(%s) 已断开连接\n", u, ip)
 
 }

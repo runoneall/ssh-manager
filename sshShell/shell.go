@@ -11,12 +11,25 @@ import (
 func StartShell(session ssh.Session) {
 
 	// 创建终端
+	ptyReq, winCh, isPty := session.Pty()
+	if !isPty {
+		fmt.Fprintln(session, "无法创建终端")
+		session.Exit(1)
+		return
+	}
 	terminal := term.NewTerminal(session, fmt.Sprintf("%s> ", session.User()))
+
+	// 设置终端大小
+	terminal.SetSize(ptyReq.Window.Width, ptyReq.Window.Height)
+	go func() {
+		for win := range winCh {
+			terminal.SetSize(win.Width, win.Height)
+		}
+	}()
 
 	// 主循环
 	for {
 		line, err := terminal.ReadLine()
-		line = strings.TrimSpace(line)
 
 		// 无法读取命令行
 		if err != nil {
@@ -25,20 +38,15 @@ func StartShell(session ssh.Session) {
 			return
 		}
 
-		// 如果输入为空，则跳过
+		// 如果输入为空
+		line = strings.TrimSpace(line)
 		if line == "" {
 			continue
 		}
 
 		// 解析命令
-		parts := strings.Fields(line)
-		cmd := parts[0]
-		var args []string
-		if len(parts) > 1 {
-			args = parts[1:]
-		} else {
-			args = make([]string, 0)
-		}
+		args := strings.Fields(line)
+		cmd := args[0]
 
 		// 显示帮助
 		if cmd == "help" {

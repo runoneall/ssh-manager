@@ -2,8 +2,6 @@ package sshSession
 
 import (
 	"context"
-	"fmt"
-	"ssh-manager/helper"
 	"sync"
 
 	"github.com/gliderlabs/ssh"
@@ -16,8 +14,6 @@ type SessionHandler func(s ssh.Session)
 func (s *OnlineSessions) AutoSessionHandler(handler SessionHandler) ssh.Handler {
 	return func(session ssh.Session) {
 		user := session.User()
-		ip := helper.GetClientIP(session.RemoteAddr())
-		fmt.Printf("* 用户 %s(%s) 已连接\n", user, ip)
 
 		// 添加会话并获取清理函数
 		_, cleanup := s.AddSession(user, session)
@@ -25,7 +21,6 @@ func (s *OnlineSessions) AutoSessionHandler(handler SessionHandler) ssh.Handler 
 		// 确保清理函数只执行一次
 		var once sync.Once
 		cleanupWrapper := func() {
-			fmt.Printf("* 用户 %s(%s) 已断开连接\n", user, ip)
 			once.Do(cleanup)
 		}
 
