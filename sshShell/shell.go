@@ -2,14 +2,11 @@ package sshShell
 
 import (
 	"fmt"
-	"ssh-manager/shellCmd"
 	"strings"
 
 	"github.com/gliderlabs/ssh"
 	"golang.org/x/term"
 )
-
-var manager *shellCmd.Commands = shellCmd.GetCommandManager()
 
 func StartShell(session ssh.Session) {
 
@@ -45,12 +42,12 @@ func StartShell(session ssh.Session) {
 
 		// 显示帮助
 		if cmd == "help" {
-			manager.ShowHelp(terminal)
+			cmanager.ShowHelp(terminal)
 			continue
 		}
 
 		// 运行命令
-		manager.RunCommand(cmd)(
+		cmanager.RunCommand(cmd)(
 			session, terminal, args,
 		)
 
