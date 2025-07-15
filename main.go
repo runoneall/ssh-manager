@@ -9,6 +9,8 @@ import (
 	"ssh-manager/vars"
 )
 
+var umanager *sshUser.SSHUsers = sshUser.GetSSHUserManager()
+
 func main() {
 
 	// 初始化文件夹
@@ -22,17 +24,22 @@ func main() {
 		}
 	}
 
-	// 添加超级用户
+	// 创建用户配置
 	userConfigPath := vars.FILE_USER_CONFIG
 	if !helper.IsExist(userConfigPath) {
 		fmt.Println("创建用户配置文件...")
-		if err := sshUser.GetSSHUsers().SaveToJson(userConfigPath); err != nil {
-			panic(fmt.Errorf("不能创建用户配置文件: %v", err))
+
+		// 添加超级用户
+		umanager.AddUser("admin", "admin", true, []string{}, false)
+		if !umanager.SaveToJson(userConfigPath) {
+			panic(fmt.Errorf("不能创建用户配置文件"))
 		}
 		fmt.Println("默认超级用户: admin, 密码: admin (该信息只会显示一次!)")
 	}
+
+	// 加载用户配置
 	fmt.Println("加载用户信息...")
-	sshUser.GetSSHUsers().LoadFromJson(userConfigPath)
+	umanager.LoadFromJson(userConfigPath)
 
 	// 启动SSH服务器
 	sshServer.Start(

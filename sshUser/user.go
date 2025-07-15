@@ -1,17 +1,16 @@
 package sshUser
 
-func GetSSHUsers() *SSHUsers {
-	return &currentSSHUsers
-}
-
-func (users *SSHUsers) AddUser(
+func (u *SSHUsers) AddUser(
 	name string,
 	password string,
 	isAdmin bool,
 	servers []string,
 	isDisable bool,
 ) {
-	(*users)[name] = SSHUserItem{
+	u.mu.Lock()
+	defer u.mu.Unlock()
+
+	u.items[name] = SSHUserItem{
 		Name:      name,
 		Password:  password,
 		IsAdmin:   isAdmin,
@@ -20,9 +19,10 @@ func (users *SSHUsers) AddUser(
 	}
 }
 
-func (users *SSHUsers) GetUser(name string) *SSHUserItem {
-	if user, ok := (*users)[name]; ok {
-		return &user
-	}
-	return nil
+func (u *SSHUsers) GetUser(name string) (SSHUserItem, bool) {
+	u.mu.RLock()
+	defer u.mu.RUnlock()
+
+	user, ok := u.items[name]
+	return user, ok
 }

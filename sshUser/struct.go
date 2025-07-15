@@ -1,5 +1,7 @@
 package sshUser
 
+import "sync"
+
 type SSHUserItem struct {
 	Name      string   `json:"name"`
 	Password  string   `json:"password"`
@@ -8,14 +10,15 @@ type SSHUserItem struct {
 	IsDisable bool     `json:"isDisable"`
 }
 
-type SSHUsers map[string]SSHUserItem
+type SSHUsers struct {
+	mu    sync.RWMutex
+	items map[string]SSHUserItem
+}
 
-var currentSSHUsers SSHUsers = SSHUsers{
-	"admin": SSHUserItem{
-		Name:      "admin",
-		Password:  "admin",
-		IsAdmin:   true,
-		Servers:   []string{},
-		IsDisable: false,
-	},
+var globalSSHUsers = &SSHUsers{
+	items: make(map[string]SSHUserItem),
+}
+
+func GetSSHUserManager() *SSHUsers {
+	return globalSSHUsers
 }
