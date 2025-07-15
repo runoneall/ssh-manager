@@ -1,32 +1,39 @@
 package sshSession
 
-import (
-	"net"
-	"slices"
+import "ssh-manager/helper"
 
-	"github.com/gliderlabs/ssh"
-)
-
-func getClientIP(s ssh.Session) string {
-	addr := s.RemoteAddr().String()
-	host, _, err := net.SplitHostPort(addr)
-	if err != nil {
-		return addr
-	}
-	return host
-}
-
+// 统计用户的会话数量
 func (s *OnlineSessions) CountSession(user string) int {
-	return len(s.GetUserSessions(user))
+	s.mu.RLock()
+	store, exists := s.users[user]
+	s.mu.RUnlock()
+
+	if !exists {
+		return 0
+	}
+
+	store.mu.RLock()
+	defer store.mu.RUnlock()
+	return len(store.sessions)
 }
 
+// 统计用户的唯一IP数量
 func (s *OnlineSessions) CountIP(user string) int {
-	ipList := []string{}
-	for _, item := range (*s)[user] {
-		ip := getClientIP(item.Session)
-		if !slices.Contains(ipList, ip) {
-			ipList = append(ipList, ip)
-		}
+	s.mu.RLock()
+	store, exists := s.users[user]
+	s.mu.RUnlock()
+
+	if !exists {
+		return 0
 	}
-	return len(ipList)
+
+	ipSet := make(map[string]struct{})
+	store.mu.RLock()
+	defer store.mu.RUnlock()
+
+	for _, item := range store.sessions {
+		ip := helper.GetClientIP(item.Session.RemoteAddr())
+		ipSet[ip] = struct{}{}
+	}
+	return len(ipSet)
 }

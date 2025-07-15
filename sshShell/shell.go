@@ -2,40 +2,58 @@ package sshShell
 
 import (
 	"fmt"
+	"ssh-manager/shellCmd"
+	"strings"
 
 	"github.com/gliderlabs/ssh"
 	"golang.org/x/term"
 )
+
+var manager *shellCmd.Commands = shellCmd.GetCommandManager()
 
 func StartShell(session ssh.Session) {
 
 	// 创建终端
 	terminal := term.NewTerminal(session, fmt.Sprintf("%s> ", session.User()))
 
-	// 创建logger
-	logger := func(msg string) {
-		terminal.Write([]byte(msg + "\n"))
-	}
-
 	// 主循环
 	for {
 		line, err := terminal.ReadLine()
+		line = strings.TrimSpace(line)
 
 		// 无法读取命令行
 		if err != nil {
-			logger("读取命令行失败")
+			fmt.Fprintln(terminal, "读取命令行失败")
 			session.Exit(1)
 			return
 		}
 
-		// 退出
-		if line == "exit" {
-			session.Close()
-			return
+		// 如果输入为空，则跳过
+		if line == "" {
+			continue
 		}
 
-		// 执行命令
-		terminal.Write([]byte("Echo: " + line + "\n"))
+		// 解析命令
+		parts := strings.Fields(line)
+		cmd := parts[0]
+		var args []string
+		if len(parts) > 1 {
+			args = parts[1:]
+		} else {
+			args = make([]string, 0)
+		}
+
+		// 显示帮助
+		if cmd == "help" {
+			manager.ShowHelp(terminal)
+			continue
+		}
+
+		// 运行命令
+		manager.RunCommand(cmd)(
+			session, terminal, args,
+		)
+
 	}
 
 }

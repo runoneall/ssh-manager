@@ -12,7 +12,8 @@
                     "created": 1752403152375,
                     "text": "1. ssh服务器",
                     "priority": null,
-                    "layout": null
+                    "layout": null,
+                    "progress": 9
                 },
                 "children": []
             },
@@ -22,7 +23,8 @@
                     "created": 1752403195617,
                     "text": "2. 多用户管理",
                     "priority": null,
-                    "layout": null
+                    "layout": null,
+                    "progress": 9
                 },
                 "children": [
                     {
@@ -220,6 +222,15 @@
                         ]
                     }
                 ]
+            },
+            {
+                "data": {
+                    "id": "dbc7ba2ks7s0",
+                    "created": 1752539243969,
+                    "text": "5. 内建shell",
+                    "layout": null
+                },
+                "children": []
             }
         ]
     },
