@@ -23,8 +23,8 @@ type Commands struct {
 var globalCommandManager = &Commands{
 	cmds: make([]CommandItem, 0),
 	defaultHandler: func(s ssh.Session, t *term.Terminal, arg []string) {
-		fmt.Fprintln(t, "* 未找到命令", arg[0])
-		fmt.Fprintln(t, "* 请使用 help 命令查看可用命令")
+		fmt.Fprintln(t, "未找到命令", arg[0])
+		fmt.Fprintln(t, "请使用 help 命令查看可用命令")
 	},
 }
 

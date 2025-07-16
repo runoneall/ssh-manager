@@ -11,7 +11,7 @@ func (c *Commands) ShowHelp(t *term.Terminal) {
 	supported_cmds := c.cmds
 	c.mu.RUnlock()
 
-	fmt.Fprintln(t, "* 可用命令:")
+	fmt.Fprintln(t, "可用命令:")
 	fmt.Fprintln(t, "  help - 再次显示此帮助信息")
 	for _, item := range supported_cmds {
 		fmt.Fprintf(t,

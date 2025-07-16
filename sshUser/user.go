@@ -26,3 +26,23 @@ func (u *SSHUsers) GetUser(name string) (SSHUserItem, bool) {
 	user, ok := u.items[name]
 	return user, ok
 }
+
+func (u *SSHUsers) IsAdmin(name string) bool {
+	user, ok := u.GetUser(name)
+	if !ok {
+		return false
+	}
+	return user.IsAdmin
+}
+
+func (u *SSHUsers) IsExist(name string) bool {
+	_, ok := u.GetUser(name)
+	return ok
+}
+
+func (u *SSHUsers) DeleteUser(name string) {
+	u.mu.Lock()
+	defer u.mu.Unlock()
+
+	delete(u.items, name)
+}
