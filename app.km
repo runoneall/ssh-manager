@@ -32,7 +32,8 @@
                             "id": "dbav478us9c0",
                             "created": 1752403275993,
                             "text": "用户名",
-                            "layout": null
+                            "layout": null,
+                            "progress": 9
                         },
                         "children": []
                     },
@@ -41,7 +42,8 @@
                             "id": "dbav4dbyaug0",
                             "created": 1752403289242,
                             "text": "密码",
-                            "layout": null
+                            "layout": null,
+                            "progress": 9
                         },
                         "children": []
                     },
@@ -50,7 +52,8 @@
                             "id": "dbav4m8nlgg0",
                             "created": 1752403308633,
                             "text": "是否是管理员",
-                            "layout": null
+                            "layout": null,
+                            "progress": 9
                         },
                         "children": []
                     },
@@ -59,7 +62,8 @@
                             "id": "dbav4y0k6280",
                             "created": 1752403334265,
                             "text": "可访问的ssh服务器",
-                            "layout": null
+                            "layout": null,
+                            "progress": 9
                         },
                         "children": []
                     },
@@ -68,7 +72,8 @@
                             "id": "dbav54qfqmg0",
                             "created": 1752403348890,
                             "text": "是否禁用",
-                            "layout": null
+                            "layout": null,
+                            "progress": 9
                         },
                         "children": []
                     }
@@ -222,15 +227,6 @@
                         ]
                     }
                 ]
-            },
-            {
-                "data": {
-                    "id": "dbc7ba2ks7s0",
-                    "created": 1752539243969,
-                    "text": "5. 内建shell",
-                    "layout": null
-                },
-                "children": []
             }
         ]
     },
