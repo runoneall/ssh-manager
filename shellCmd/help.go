@@ -20,13 +20,9 @@ func (c *Commands) ShowHelp(s ssh.Session, t *term.Terminal) {
 	for _, item := range supported_cmds {
 		// 只显示用户有权限查看的命令
 		if !item.NeedAdmin || isAdmin {
-			adminNote := ""
-			if item.NeedAdmin {
-				adminNote = " (需要管理员权限)"
-			}
 			fmt.Fprintf(t,
-				"  %s - %s%s\n",
-				item.Name, item.Help, adminNote,
+				"  %s - %s\n",
+				item.Name, item.Help,
 			)
 		}
 	}
