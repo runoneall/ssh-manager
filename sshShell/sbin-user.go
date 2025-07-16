@@ -21,12 +21,6 @@ func sbinUserSave(t *term.Terminal) {
 
 func sbinUserAdd(s ssh.Session, t *term.Terminal, arg []string) {
 
-	// 验证管理员
-	if !umanager.IsAdmin(s.User()) {
-		fmt.Fprintln(t, "你不能这么做!")
-		return
-	}
-
 	// 获取用户输入
 	name := TokenAt(arg, 1)
 	if name == "" {
@@ -48,12 +42,6 @@ func sbinUserAdd(s ssh.Session, t *term.Terminal, arg []string) {
 }
 
 func sbinUserManage(s ssh.Session, t *term.Terminal, arg []string) {
-
-	// 验证管理员
-	if !umanager.IsAdmin(s.User()) {
-		fmt.Fprintln(t, "你不能这么做!")
-		return
-	}
 
 	// 创建解析器
 	parser := argparse.NewParser(arg[0], "管理用户")
@@ -239,12 +227,6 @@ func sbinUserManage(s ssh.Session, t *term.Terminal, arg []string) {
 }
 
 func sbinUserList(s ssh.Session, t *term.Terminal, arg []string) {
-
-	// 验证管理员
-	if !umanager.IsAdmin(s.User()) {
-		fmt.Fprintln(t, "你不能这么做!")
-		return
-	}
 
 	// 打印用户列表
 	fmt.Fprintln(t, "用户名列表:")

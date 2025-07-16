@@ -6,6 +6,7 @@ import (
 )
 
 func (c *Commands) AddCommand(
+	needAdmin bool,
 	name string,
 	call func(s ssh.Session, t *term.Terminal, arg []string),
 	help string,
@@ -14,8 +15,9 @@ func (c *Commands) AddCommand(
 	defer c.mu.Unlock()
 
 	c.cmds = append(c.cmds, CommandItem{
-		Name: name,
-		Call: call,
-		Help: help,
+		NeedAdmin: needAdmin,
+		Name:      name,
+		Call:      call,
+		Help:      help,
 	})
 }
