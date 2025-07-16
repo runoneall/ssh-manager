@@ -8,10 +8,6 @@ import (
 	"golang.org/x/term"
 )
 
-func binExit(s ssh.Session, t *term.Terminal, arg []string) {
-	s.Exit(0)
-}
-
 func binLogout(s ssh.Session, t *term.Terminal, arg []string) {
 
 	// 直接退出
@@ -21,7 +17,7 @@ func binLogout(s ssh.Session, t *term.Terminal, arg []string) {
 	}
 
 	// 创建解析器
-	parser := argparse.NewParser("logout", "更好的退出登录")
+	parser := argparse.NewParser(arg[0], "更好的退出登录")
 	parser.DisableHelp()
 
 	// 添加help选项

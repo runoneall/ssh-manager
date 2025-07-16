@@ -56,7 +56,7 @@ func sbinUserManage(s ssh.Session, t *term.Terminal, arg []string) {
 	}
 
 	// 创建解析器
-	parser := argparse.NewParser("user", "管理用户")
+	parser := argparse.NewParser(arg[0], "管理用户")
 	parser.DisableHelp()
 
 	// 添加help选项
