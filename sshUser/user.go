@@ -46,3 +46,14 @@ func (u *SSHUsers) DeleteUser(name string) {
 
 	delete(u.items, name)
 }
+
+func (u *SSHUsers) ListUser() []string {
+	u.mu.RLock()
+	defer u.mu.RUnlock()
+
+	var users []string
+	for name := range u.items {
+		users = append(users, name)
+	}
+	return users
+}

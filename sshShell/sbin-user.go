@@ -237,3 +237,19 @@ func sbinUserManage(s ssh.Session, t *term.Terminal, arg []string) {
 	logoutAll(user.Name)
 
 }
+
+func sbinUserList(s ssh.Session, t *term.Terminal, arg []string) {
+
+	// 验证管理员
+	if !umanager.IsAdmin(s.User()) {
+		fmt.Fprintln(t, "你不能这么做!")
+		return
+	}
+
+	// 打印用户列表
+	fmt.Fprintln(t, "用户名列表:")
+	for _, name := range umanager.ListUser() {
+		fmt.Fprintf(t, "  %s\n", name)
+	}
+
+}
