@@ -25,4 +25,7 @@ func init() {
 	cmanager.AddCommand(true, "user-list", sbinUserList, "列出所有用户")
 	cmanager.AddCommand(true, "ul", sbinUserList, "user-list的别名")
 
+	cmanager.AddCommand(false, "connect", binConnect, "连接到SHELL")
+	cmanager.AddCommand(false, "cd", binConnect, "connect的别名")
+
 }
