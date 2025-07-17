@@ -1,20 +1,20 @@
-package shellCmd
+package shellBin
 
 import (
 	"github.com/gliderlabs/ssh"
 	"golang.org/x/term"
 )
 
-func (c *Commands) AddCommand(
+func (b *Bins) AddBin(
 	needAdmin bool,
 	name string,
 	call func(s ssh.Session, t *term.Terminal, arg []string),
 	help string,
 ) {
-	c.mu.Lock()
-	defer c.mu.Unlock()
+	b.mu.Lock()
+	defer b.mu.Unlock()
 
-	c.cmds = append(c.cmds, CommandItem{
+	b.bins = append(b.bins, BinItem{
 		NeedAdmin: needAdmin,
 		Name:      name,
 		Call:      call,

@@ -90,12 +90,31 @@
                 "children": [
                     {
                         "data": {
-                            "id": "dbavlwdad5k0",
-                            "created": 1752404662871,
-                            "text": "uuid",
+                            "id": "dbdxeczuvyo0",
+                            "created": 1752714394242,
+                            "text": "类型",
                             "layout": null
                         },
-                        "children": []
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "dbdxeflzb480",
+                                    "created": 1752714399932,
+                                    "text": "local",
+                                    "layout": null
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "dbdxeicitu80",
+                                    "created": 1752714405891,
+                                    "text": "ssh",
+                                    "layout": null
+                                },
+                                "children": []
+                            }
+                        ]
                     },
                     {
                         "data": {

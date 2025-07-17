@@ -1,4 +1,4 @@
-package shellCmd
+package shellBin
 
 import (
 	"fmt"
@@ -7,17 +7,17 @@ import (
 	"golang.org/x/term"
 )
 
-func (c *Commands) ShowHelp(s ssh.Session, t *term.Terminal) {
-	c.mu.RLock()
-	supported_cmds := c.cmds
-	c.mu.RUnlock()
+func (b *Bins) ShowHelp(s ssh.Session, t *term.Terminal) {
+	b.mu.RLock()
+	supported_bins := b.bins
+	b.mu.RUnlock()
 
 	isAdmin := umanager.IsAdmin(s.User())
 
 	fmt.Fprintln(t, "可用命令:")
 	fmt.Fprintln(t, "  help - 再次显示此帮助信息")
 
-	for _, item := range supported_cmds {
+	for _, item := range supported_bins {
 		// 只显示用户有权限查看的命令
 		if !item.NeedAdmin || isAdmin {
 			fmt.Fprintf(t,

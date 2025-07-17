@@ -50,12 +50,12 @@ func StartShell(session ssh.Session) {
 
 		// 显示帮助
 		if cmd == "help" {
-			cmanager.ShowHelp(session, terminal)
+			bmanager.ShowHelp(session, terminal)
 			continue
 		}
 
 		// 运行命令
-		cmanager.RunCommand(cmd)(
+		bmanager.RunBin(cmd)(
 			session, terminal, args,
 		)
 
